@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/flights/new">Create a New Flight</a>
+    <table id="list">
+      <thead>
+        <tr>
+          <th>Airline</th>
+          <th>Flight<br>Number</th>
+          <th>Departure Date/Time</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% flightsSchema.forEach(function(f) { %>
+          <tr>
+            <td><%= f.airline %></td>
+            <td><%= f.flightNo %></td>
+            <td><%= f.departs %></td>
+            <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+  </body>
+</html>

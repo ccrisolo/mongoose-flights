@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Flights Details</title>
+</head>
+<body>
+    <h1>Flight Details</h1>
+    <section id="show-page">
+        <div><strong>Airline:</strong> <%= flight.airline %> </div>
+        <div><strong>Flight Number:</strong> <%= flight.flightNo %></div>
+        <div><strong>Departs:</strong> <%= String(flight.departs).substr(0,21) %></div>
+        <div><strong>Airport:</strong> <%= flight.airport %></div>
+
+        <h1>Upcoming Destinations</h1>
+        <div> <% flight.destinations.forEach(function(d, i){ %>
+            <div><strong>Destination Airport:</strong>  <%= d.airport %> </div>
+            <div><strong>Arrival Date & Time:</strong> <%= String(d.arrival).substr(0,21) %> </div>
+        <% }) %>
+        
+    </section><br>
+    <form action="/flights/<%=flight._id %>/destinations" method="POST">
+        <h1>Add Destination</h1>
+        <label>Add Destination Airport:
+            <select name="airport" id="destination">
+                <option value="DEN">DEN</option>
+                <option value="AUS">AUS</option>
+                <option value="DFW">DFW</option>
+                <option value="LAX">LAX</option>
+                <option value="SAN">SAN</option>
+            </select>
+        </label><br>
+        <label>Arrival:
+            <input type="datetime-local" name="arrival">
+        </label><br>
+        <input type="submit" value="Add Destination">
+    </form>
+    <br>
+    <br>
+        </div>
+        <h1>Tickets</h1>
+        <div> <% flight.tickets.forEach(function(t, i){ %>
+            <div><strong>Seat:</strong> <%= t.seat %> </div>
+            <div><strong>Price:</strong> <%= t.price %> </div>
+        <% }) %>
+        </div>
+        <h1>Add Ticket</h1>
+    <a href="/flights/<%= flight._id%>/tickets/new">New Ticket</a>
+</body>
+</html>
+
+            
+
+        
+        
+    
+        
+        
+
